@@ -261,49 +261,28 @@ if __name__ == '__main__':
 	#print list(set(final_category_docs['acq']) & set(b))
 
 	test_category_list = {}
-	trained_category_Lists_Data = {}
 	categories = reuters.categories() # Total categories list
 	for category_name in categories:
 			category_docs = reuters.fileids(category_name)
-			if len(category_docs) >= 100:
-				test_category_list[category_name] = []
-				trained_category_Lists_Data[category_name] = []
-				for category_id in category_docs:
-					if category_id.startswith("test"):
-						test_category_list[category_name].append(category_id.split('/')[1])
+			test_category_list[category_name] = []
+			for category_id in category_docs:	
+				if category_id.startswith("test"):
+					test_category_list[category_name].append(category_id.split('/')[1])
 
-					if category_id.startswith("train"):
-						trained_category_Lists_Data[category_name].append(category_id.split('/')[1])
-
-	counter = 0
-	counter1 = 0
-	test_category_finalList = {}
-	train_category_finalList = {}
+	''' counter = 0
 	for tt in test_category_list:
-		if len(test_category_list[tt]) >= 100:
-			test_category_finalList[tt] = test_category_list[tt]
+		print str(counter) + ':' + tt + ' ' + str(len(test_category_list[tt])) + ' ' + str(test_category_list[tt])
+		print "\n"
+		counter = counter+1
 
-			print str(counter) + ':' + tt + ' ' + str(len(test_category_finalList[tt])) + ' ' + str(test_category_finalList[tt])
-			print "\n"
-			counter = counter+1
-
-		if len(trained_category_Lists_Data[tt]) >= 100:
-			train_category_finalList[tt] = trained_category_Lists_Data[tt]
-
-			print str(counter1) + ':' + tt + ' ' + str(len(trained_category_Lists_Data[tt])) + ' ' + str(trained_category_Lists_Data[tt])
-			print "\n"
-			counter1 = counter1+1
-
-	exit() 
+	exit() '''
 	
 	train_categories = {}
 
-	
-	'''
 	#frequent item sets for train data
 	for tt in frequent_item_list:
 		print tt
-	'''
+
 
 	for item_set in frequent_item_list:
 		
@@ -340,18 +319,14 @@ if __name__ == '__main__':
 						train_categories[i].append(item_set)
 
     
-	'''
+    '''
     #train category - mapped - frequent item sets
-	counter1 = 0
 	for tt in train_categories:
-		print str(counter1) + ': ' + tt + ' ' + str(train_categories[tt])
-		print "\n"
-		counter1 += 1
+		print tt + ' ' + str(train_categories[tt])
 
 	exit()
 	'''
-
-
+	
 	final_test_categories = {}
 
 	for doc_id in reuters.fileids():
